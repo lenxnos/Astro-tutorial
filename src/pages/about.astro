@@ -1,4 +1,19 @@
 ---
+	const pageTitle = 'About Me';
+
+	const identify = {
+		firstName: 'Nelson',
+		country: 'Venezuela',
+		occupation: 'Frontend Developer',
+		age: 28,
+		hobbies: ['coding', 'reading', 'gaming'],
+	}
+
+	const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Vue', 'NextJs', 'NuxtJs', 'Astro', 'Writing Docs']
+
+	const happy = true;
+	const finished = false;
+	const goals = 3;
 ---
 
 <html lang="en">
@@ -7,16 +22,34 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/blog/">Blog</a>
 		
-		<h1>About Me</h1>
+		<h1>{pageTitle}</h1>
 
 		<p>I am working through Astro's introductory tutorial. This is the second page on my website.</p>
 		<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+
+		<p>Here are few facts about me:</p>
+		<ul>
+			<li>My name is {identify.firstName}</li>
+			<li>I live in {identify.country} and I work as a {identify.occupation}</li>
+			{
+				identify.hobbies.length >= 2 &&
+				<li>Two of my hobbies are: {identify.hobbies[0]} and {identify.hobbies[2]}</li>
+			}
+		</ul>
+		<p>My skills are:</p>
+		<ul>
+			{skills.map((skill) => <li>{skill}</li>)}
+		</ul>
+
+		{happy && <p>I am happy to be learning Astro!</p>}
+		{finished && <p>I finished this tutorial!</p>}
+		{goals === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
 	</body>
 </html>
