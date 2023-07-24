@@ -1,8 +1,5 @@
 ---
-import "../styles/global.css";
-
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About Me";
 
@@ -32,86 +29,65 @@ const goals = 3;
 
 const skillColor = "navy";
 ---
+<BaseLayout pageTitle={pageTitle}>
+  <p>
+    I am working through Astro's introductory tutorial. This is the second page
+    on my website.
+  </p>
+  <p>
+    This site will update as I complete more of the tutorial, so keep checking
+    back and see how my journey is going!
+  </p>
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-
-    <style define:vars={{ skillColor }}>
-      h1 {
-        color: purple;
-        font-size: 3rem;
-      }
-
-      .skill {
-        border: 1px solid #f0f0f0;
-        padding: 0.5rem;
-        margin: 0.5rem;
-        display: inline-block;
-        border-radius: 0.5rem;
-        color: var(--skillColor);
-        background-color: #f0f0f0;
-        transition: all 0.2s ease-in-out;
-      }
-
-      .skill:hover {
-        color: white;
-        background-color: var(--skillColor);
-        border-color: var(--skillColor);
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-
-    <h1>{pageTitle}</h1>
-
-    <p>
-      I am working through Astro's introductory tutorial. This is the second
-      page on my website.
-    </p>
-    <p>
-      This site will update as I complete more of the tutorial, so keep checking
-      back and see how my journey is going!
-    </p>
-
-    <p>Here are few facts about me:</p>
-    <ul>
-      <li>My name is {identify.firstName}</li>
-      <li>
-        I live in {identify.country} and I work as a {identify.occupation}
-      </li>
-      {
-        identify.hobbies.length >= 2 && (
-          <li>
-            Two of my hobbies are: {identify.hobbies[0]} and{" "}
-            {identify.hobbies[2]}
-          </li>
-        )
-      }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
-
-    {happy && <p>I am happy to be learning Astro!</p>}
-    {finished && <p>I finished this tutorial!</p>}
+  <p>Here are few facts about me:</p>
+  <ul>
+    <li>My name is {identify.firstName}</li>
+    <li>
+      I live in {identify.country} and I work as a {identify.occupation}
+    </li>
     {
-      goals === 3 ? (
-        <p>My goal is to finish in 3 days.</p>
-      ) : (
-        <p>My goal is not 3 days.</p>
+      identify.hobbies.length >= 2 && (
+        <li>
+          Two of my hobbies are: {identify.hobbies[0]} and {identify.hobbies[2]}
+        </li>
       )
     }
+  </ul>
+  <p>My skills are:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 
-    <Footer />
-		<script>
-			import '../scripts/menu.js'
-		</script>
-  </body>
-</html>
+  {happy && <p>I am happy to be learning Astro!</p>}
+  {finished && <p>I finished this tutorial!</p>}
+  {
+    goals === 3 ? (
+      <p>My goal is to finish in 3 days.</p>
+    ) : (
+      <p>My goal is not 3 days.</p>
+    )
+  }
+</BaseLayout>
+<style define:vars={{ skillColor }}>
+  h1 {
+    color: purple;
+    font-size: 3rem;
+  }
+
+  .skill {
+    border: 1px solid #f0f0f0;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    display: inline-block;
+    border-radius: 0.5rem;
+    color: var(--skillColor);
+    background-color: #f0f0f0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .skill:hover {
+    color: white;
+    background-color: var(--skillColor);
+    border-color: var(--skillColor);
+  }
+</style>
