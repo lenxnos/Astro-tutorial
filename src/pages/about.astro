@@ -1,87 +1,117 @@
 ---
-	import '../styles/global.css';
-	
-	import Navigation from '../components/Navigation.astro';
-	import Footer from '../components/Footer.astro';
+import "../styles/global.css";
 
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-	const pageTitle = 'About Me';
+const pageTitle = "About Me";
 
-	const identify = {
-		firstName: 'Nelson',
-		country: 'Venezuela',
-		occupation: 'Frontend Developer',
-		age: 28,
-		hobbies: ['coding', 'reading', 'gaming'],
-	}
+const identify = {
+  firstName: "Nelson",
+  country: "Venezuela",
+  occupation: "Frontend Developer",
+  age: 28,
+  hobbies: ["coding", "reading", "gaming"],
+};
 
-	const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Vue', 'NextJs', 'NuxtJs', 'Astro', 'Writing Docs']
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Vue",
+  "NextJs",
+  "NuxtJs",
+  "Astro",
+  "Writing Docs",
+];
 
-	const happy = true;
-	const finished = false;
-	const goals = 3;
+const happy = true;
+const finished = false;
+const goals = 3;
 
-	const skillColor = 'navy';
+const skillColor = "navy";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
 
-		<style define:vars={{skillColor}} >
-			h1 {
-				color: purple;
-				font-size: 3rem;
-			}
+    <style define:vars={{ skillColor }}>
+      h1 {
+        color: purple;
+        font-size: 3rem;
+      }
 
-			.skill {
-				border: 1px solid #f0f0f0;
-				padding: 0.5rem;
-				margin: 0.5rem;
-				display: inline-block;
-				border-radius: 0.5rem;
-				color: var(--skillColor);
-				background-color: #f0f0f0;
-				transition: all 0.2s ease-in-out;
-			}
+      .skill {
+        border: 1px solid #f0f0f0;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        display: inline-block;
+        border-radius: 0.5rem;
+        color: var(--skillColor);
+        background-color: #f0f0f0;
+        transition: all 0.2s ease-in-out;
+      }
 
-			.skill:hover {
-				color: white;
-				background-color: var(--skillColor);
-				border-color: var(--skillColor);
-			}
-		</style>
-	</head>
-	<body>
-		<Navigation />
-		
-		<h1>{pageTitle}</h1>
+      .skill:hover {
+        color: white;
+        background-color: var(--skillColor);
+        border-color: var(--skillColor);
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
 
-		<p>I am working through Astro's introductory tutorial. This is the second page on my website.</p>
-		<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+    <h1>{pageTitle}</h1>
 
-		<p>Here are few facts about me:</p>
-		<ul>
-			<li>My name is {identify.firstName}</li>
-			<li>I live in {identify.country} and I work as a {identify.occupation}</li>
-			{
-				identify.hobbies.length >= 2 &&
-				<li>Two of my hobbies are: {identify.hobbies[0]} and {identify.hobbies[2]}</li>
-			}
-		</ul>
-		<p>My skills are:</p>
-		<ul>
-			{skills.map((skill) => <li class="skill">{skill}</li>)}
-		</ul>
+    <p>
+      I am working through Astro's introductory tutorial. This is the second
+      page on my website.
+    </p>
+    <p>
+      This site will update as I complete more of the tutorial, so keep checking
+      back and see how my journey is going!
+    </p>
 
-		{happy && <p>I am happy to be learning Astro!</p>}
-		{finished && <p>I finished this tutorial!</p>}
-		{goals === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+    <p>Here are few facts about me:</p>
+    <ul>
+      <li>My name is {identify.firstName}</li>
+      <li>
+        I live in {identify.country} and I work as a {identify.occupation}
+      </li>
+      {
+        identify.hobbies.length >= 2 && (
+          <li>
+            Two of my hobbies are: {identify.hobbies[0]} and{" "}
+            {identify.hobbies[2]}
+          </li>
+        )
+      }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
 
-		<Footer />
-	</body>
+    {happy && <p>I am happy to be learning Astro!</p>}
+    {finished && <p>I finished this tutorial!</p>}
+    {
+      goals === 3 ? (
+        <p>My goal is to finish in 3 days.</p>
+      ) : (
+        <p>My goal is not 3 days.</p>
+      )
+    }
+
+    <Footer />
+		<script>
+			import '../scripts/menu.js'
+		</script>
+  </body>
 </html>
