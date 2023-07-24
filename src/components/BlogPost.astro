@@ -11,20 +11,22 @@ const { title, author, date, url, image } = Astro.props;
 
 <li>
   <a href={url}>
-    <div class="container-image">
-      <img
-        width="150"
-        height="150"
-        src={image ?? "https://via.placeholder.com/150"}
-        alt={title ?? "Placeholder image"}
-      />
-    </div>
-    <div class="container-content">
-      <h3>{title}</h3>
-      <p>
-        <time datetime="{date}">{date.slice(0, 10)}</time>
-        <span>by {author}</span>
-      </p>
+    <div class="post">
+      <div class="container-image">
+        <img
+          width="150"
+          height="150"
+          src={image ?? "https://via.placeholder.com/150"}
+          alt={title ?? "Placeholder image"}
+        />
+      </div>
+      <div class="container-content">
+        <h3>{title}</h3>
+        <p>
+          <time datetime="{date}">{date.slice(0, 10)}</time>
+          <span>by {author}</span>
+        </p>
+      </div>
     </div>
   </a>
 </li>
@@ -33,7 +35,7 @@ const { title, author, date, url, image } = Astro.props;
   li {
     margin-bottom: 1rem;
   }
-  article {
+  .post {
     background-color: #fff;
     border-radius: 7px;
     display: flex;
@@ -91,7 +93,7 @@ const { title, author, date, url, image } = Astro.props;
     }
   }
 
-  article:hover {
+  .post:hover {
     box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.1);
   }
 </style>
