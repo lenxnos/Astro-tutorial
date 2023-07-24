@@ -1,18 +1,97 @@
 ---
 interface Props {
+  url: string;
   title: string;
   author: string;
   date: string;
+  image: string;
 }
-const { title, author, date } = Astro.props;
+const { title, author, date, url, image } = Astro.props;
 ---
 
-<article>
-  <header>
-    <h1>{title}</h1>
-  </header>
-  <p>
-    <time datetime="{date}">{ date }</time>
-    <span>by {author}</span>
-  </p>
-</article>
+<li>
+  <a href={url}>
+    <div class="container-image">
+      <img
+        width="150"
+        height="150"
+        src={image ?? "https://via.placeholder.com/150"}
+        alt={title ?? "Placeholder image"}
+      />
+    </div>
+    <div class="container-content">
+      <h3>{title}</h3>
+      <p>
+        <time datetime="{date}">{date.slice(0, 10)}</time>
+        <span>by {author}</span>
+      </p>
+    </div>
+  </a>
+</li>
+
+<style>
+  li {
+    margin-bottom: 1rem;
+  }
+  article {
+    background-color: #fff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: #333;
+    font-size: 0.8rem;
+  }
+
+  .container-content {
+    padding: 0.8rem;
+    flex: 1;
+  }
+
+  .container-image {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    @media screen and (min-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #eee;
+    position: absolute;
+    border-radius: 7px 7px 0 0;
+
+    @media screen and (min-width: 768px) {
+      border-radius: 7px 0 0 7px;
+    }
+  }
+
+  article:hover {
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.1);
+  }
+</style>
